@@ -1,0 +1,10 @@
+Package: MultiSKAT
+Type: Package
+Title: Sequence Kernel Association Tests with Multiple phenotypes
+Version: 1.0
+Date: 2017-03-19
+Author: Diptavo Dutta and Seunggeun Lee
+Maintainer: Diptavo Dutta <diptavo@umich.edu>
+Description: Kernel Regression based association tests for Multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region and computes corresponding p-values efficiently.
+Depends: SKAT, nlme, copula
+License: GPL (>=2)

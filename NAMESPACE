@@ -1,0 +1,6 @@
+export(Genotype.Kernels,MultiSKAT,MultiSKAT_Fast,MultiSKAT_Kins,MultiSKAT_NULL,MultiSKAT_NULL_Fast,MultiSKAT_NULL_Kins,WSS,resampling.pvalues,minPCop,ComCop,ComCop_Kins,WSS_Kins,minPCop_Kins)
+
+import(SKAT,nlme,copula)
+
+
+importFrom("stats", "cor", "cov", "lm", "princomp", "residuals","rnorm")
