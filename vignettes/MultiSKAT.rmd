@@ -1,0 +1,140 @@
+---
+title: "Multi-SKAT"
+author: "Diptavo Dutta"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+
+vignette: >
+  %\VignetteIndexEntry{Multi-SKAT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Multi-SKAT R-package
+
+This package produces kernel Regression based rare-variant association tests for Multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region/gene and computes corresponding pvalues
+efficiently.  
+
+## Overview
+
+In this vignette we display an elementary workflow to obtain the association test results corresponding to different `Multi-SKAT` tests (omnibus and with prespecified kernel)
+----------
+
+## Unrelated individuals
+
+### Multi-SKAT with pre-specified kernels
+
+An example dataset `MultiSKAT.example.data` has a genotype matrix `Genotypes` of 5000 individuals and 56 SNPs,
+a phenotype matrix `Phenotypes` of 5 continuous phenotypes on those individuals, and a covariates vector `Cov` denoting intercept.
+
+The first step is to create a null model using `MultiSKAT_NULL` function (for unrelated individuals) with the phenotype matrix and covariate matrix. Subsequently, `MultiSKAT` function is used with appropriate kernel to obtain the association p-value. 
+
+```{r, fig.show='hold'}
+library(MultiSKAT)
+data(MultiSKAT.example.data)
+attach(MultiSKAT.example.data)
+
+obj.null <- MultiSKAT_NULL(Phenotypes,Cov)
+
+### Phenotype-Kernel: PhC; Genotype-Kernel: SKAT
+out1 <- MultiSKAT(obj.null,Genotypes,Sigma_p = cov(Phenotypes),verbose = FALSE)
+out1$p.value
+
+### Phenotype-Kernel: Het; Genotype-Kernel: SKAT
+out2 <- MultiSKAT(obj.null,Genotypes,Sigma_p = diag(5),verbose = FALSE)
+out2$p.value
+
+### Phenotype-Kernel: Hom; Genotype-Kernel: SKAT
+out3 <- MultiSKAT(obj.null,Genotypes,Sigma_p = matrix(1,ncol = 5,nrow = 5),verbose = FALSE)
+out3$p.value
+
+### Phenotype-Kernel: PC-Sel; Genotype-Kernel: SKAT
+### Select top 4 principal components
+
+sel <- 4
+L <- obj.null$L
+V_y <- cov(Phenotypes)
+V_p <- cov(Phenotypes%*%L)
+L_sel <- cbind(L[,1:sel],0)
+pc_sel_kernel <- V_y%*%L_sel%*%solve(V_p)%*%solve(V_p)%*%t(L_sel)%*%V_y
+out4 <- MultiSKAT(obj.null,Genotypes,Sigma_p = pc_sel_kernel,verbose = FALSE)
+out4$p.value
+
+### Phenotype-Kernel: PhC; Genotype-Kernel: Burden
+out5 <- MultiSKAT(obj.null,Genotypes,Sigma_p = cov(Phenotypes),verbose = FALSE,r.corr = 1)
+out5$p.value
+
+### Phenotype-Kernel: Het; Genotype-Kernel: Burden
+out6 <- MultiSKAT(obj.null,Genotypes,Sigma_p = diag(5),verbose = FALSE,r.corr = 1)
+out6$p.value
+
+```
+
+
+#### Assign weights to variants
+It is assumed that rarer variants are more likely to be causal variants with large effect sizes. The default version of `MultiSKAT` uses $w_i = Beta(MAF_i,1,25)$ as per Wu et al(2011)([via](https://www.ncbi.nlm.nih.gov/pubmed/21737059)). Other weighting schemes can also be incorporated in the `MultiSKAT` function through the `weights` and `weights.beta` option.
+
+```{r, fig.show='hold'}
+
+### No weights
+MultiSKAT(obj.null,Genotypes,Sigma_p = cov(Phenotypes),
+          weights.beta = c(1,1),verbose = FALSE)$p.value
+
+```
+
+### Omnibus Tests: 
+
+#### minP 
+
+To combine MultiSKAT tests with pre-specified phenotype kernels `minP` function can be used given the genotype kernels remain the same.
+
+```{r, fig.show='hold'}
+
+### Combining PhC, Het and Hom with genotype kernel being SKAT
+obj.list = list(out1,out2,out3)
+obj.minP = minP(obj.null,obj.list,Genotypes)
+obj.minP$p.value
+
+### Combining PhC and Het with genotype kernel being Burden
+obj.list = list(out5,out6)
+obj.minP2 = minP(obj.null,obj.list,Genotypes,r.corr = 1)
+obj.minP2$p.value
+
+```
+
+#### minPcom 
+
+To combine MultiSKAT tests with pre-specified phenotype kernels with simultaneously varying genotype kernels`minPcom` function can be used.
+
+```{r, fig.show='hold'}
+
+### Getting minPcom p-value combining PhC, Het and Hom kernels
+Sigma_Ps = list(cov(Phenotypes),diag(5),matrix(1,ncol = 5,nrow = 5))
+obj.com = minPcom(obj.null,Sigma_Ps,Genotypes,verbose = FALSE)
+obj.com$p.value
+```
+
+--------
+
+## Related individuals
+
+`Multi-SKAT` functions can analyse related individuals by incorporating kinship correction. An example dataset with related individuals `MultiSKAT.Kinship.example.data` includes a kinship matrix `Kinship` of 500 individuals and 20 SNPs, a co-heritability matrix `V_g`, residual covariance matrix `V_e` in addition to 5 phenotypes, genotype matrix and covariates. Additionally, if the kinship matrix can be written as $$Kinship = UDU^T$$, with $D$ being a diagonal matrix of eigen values, the dataset contains `U` and `D`. The workflow for the related individuals remains the same. First the construction of the null model through `MultiSKAT_NULL_Kins` followed by obtaining the p-value through `MultiSKAT`
+
+
+```{r, fig.show='hold'}
+detach(MultiSKAT.example.data)
+data(MultiSKAT.Kinship.example.data)
+attach(MultiSKAT.Kinship.example.data)
+
+Kinship[1:6,1:6]
+
+V_g
+
+
+obj.null = MultiSKAT_NULL_Kins(Phenotypes,Cov,U,D,V_g,V_e)
+
+### Phenotype-Kernel: PhC; Genotype-Kernel: SKAT
+out1 <- MultiSKAT(obj.null,Genotypes,Sigma_p = cov(Phenotypes),verbose = FALSE)
+out1$p.value
+```
+
