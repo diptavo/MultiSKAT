@@ -76,7 +76,7 @@ MultiSKAT_NULL_Kins <- function(y.mat,X,U,D,V_g,V_e) {
   V_p = cov(pc.mat)
   
   re<-list(res = res, res.V = res.V, V.item.inv = V.item.inv, X1=X1, XVX1_inv=XVX1_inv, n.pheno=n.pheno, q1=q1, n.all=n, id_include=1:n,y.Corr = Corr,y.Cov = Cov,pc.Cov = V_p,L = L,V_g = V_g,D = D,U = U,U1X = U1X,kins.adj.res.V  = adj.res.V,XUVU1X1_inv = XUVU1X1_inv)
-  class(re)<-"SKAT_Multiphen_Null_PhenCorr_Kins"
+  class(re)<-"MultiSKAT_NULL_related"
   return (re)
 }
 

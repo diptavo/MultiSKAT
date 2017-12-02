@@ -26,3 +26,4 @@ name of the SSD info file.
 \value{
 a list object of SSD.INFO.
 }
+\author{Seunggeun Lee}

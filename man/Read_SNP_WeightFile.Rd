@@ -21,13 +21,6 @@ Please keep in mind that there should be no header!!
 \value{
 Output object has a hash table of SNP IDs and weights.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
+Seunggeun Lee
 }
-\note{
-%%  ~~further notes~~
-}
-

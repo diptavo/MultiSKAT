@@ -1,10 +1,23 @@
 Genotype.Kernels <-
 function(Z,obj.res, kernel = "linear.weighted", Is.Common=FALSE, weights.beta=c(1,25), weights = NULL
-                            , impute.method = "fixed",r.corr=0,   is_check_genotype=TRUE, is_dosage = FALSE, missing_cutoff=0.15, estimate_MAF=1,max_maf=1){
+                            , impute.method = "fixed",r.corr=0,   is_check_genotype=TRUE, is_dosage = FALSE, missing_cutoff=0.15, estimate_MAF=1,max_maf=1,verbose = TRUE){
   
 #  kernel = "linear"; Is.Common=FALSE; weights.beta=c(0.5,0.5); weights = NULL  ; impute.method = "fixed";r.corr=0;   is_check_genotype=TRUE; is_dosage = FALSE; missing_cutoff=0.15; estimate_MAF=1; max_maf=1;
+  
   m = ncol(Z)
   n = nrow(Z)
+ 
+  if(verbose){ print(paste("The region has ",m," variants",sep = ""))}
+  if(m < 3 & verbose){
+	msg <-sprintf("Rare variant test with < 3 variants is not advisable")
+	warning(msg,call. = FALSE)}
+  n.rare <- sum(MAF(Z) < 0.01)
+    if(verbose){print(paste("The region has ",n.rare," rare variants",sep = ""))}
+  mc <- sum(MAC(Z))
+  if(mc < 5 & verbose){
+	msg <-sprintf("Rare variant test with total MAC < 5 is not advisable")
+	warning(msg,call. = FALSE)}
+
   n.pheno = obj.res$n.pheno
   q1 = obj.res$q1
   V.item.inv = obj.res$V.item.inv

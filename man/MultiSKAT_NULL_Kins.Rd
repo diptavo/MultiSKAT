@@ -33,30 +33,23 @@ Co-heritability matrix
   \item{V_e}{Residual variance matrix}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Estimation of the coheritability and residual variance matrices should be as accurate as possible, otherwise it can hamper the false positive rates of the corresponding MultiSKAT tests.
 }
+
 \value{
-This function returns an null object of the class SKAT_Multiphen_Null_PhenCorr_Kins. This object contains details, values and residuals for computing MultiSKAT test statistic and the null distribution
+This function returns an null object of the class MultiSKAT_NULL_related. This object contains details, values and residuals for computing MultiSKAT test statistic and the null distribution.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Diptavo Dutta
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
+data(MultiSKAT.Kinship.example.data)
+attach(MultiSKAT.Kinship.example.data)
+
+obj.null = MultiSKAT_NULL_Kins(Phenotypes,Cov,U,D,V_g,V_e)
+
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ Null_model }

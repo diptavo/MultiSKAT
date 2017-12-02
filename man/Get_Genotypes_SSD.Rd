@@ -33,3 +33,5 @@ A genotype matrix with n rows and m columns, where n is the number of samples an
 number of SNPs.
 
 }
+
+\author{Seunggeun Lee}

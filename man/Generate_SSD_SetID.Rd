@@ -8,7 +8,8 @@ Generate SNP set data file (SSD)
 
 }
 \usage{
-Generate_SSD_SetID(File.Bed, File.Bim, File.Fam, File.SetID, File.SSD, File.Info, Is.FlipGenotype = TRUE)
+Generate_SSD_SetID(File.Bed, File.Bim, File.Fam, 
+File.SetID, File.SSD, File.Info, Is.FlipGenotype = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -5,7 +5,7 @@
 Get null resampling p-values
 }
 \description{
-Function to calculate the null p-values for a list of MultiSKAT or MultiSKAT_Fast objects
+Function to calculate the null p-values for a list of MultiSKAT objects
 }
 \usage{
 resampling.pvalues(obj.res, obj.list, Z1, X, 
@@ -32,30 +32,20 @@ A string denoting the method to use for the resampling p-values. Currently the t
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The output from this function is used in minP and minPcom tests. "Permutation" method should be used for unrelated individuals only.
 }
 \value{
 This function returns a list containing
 
   \item{p.values}{A numeric matrix containing the resampling p-values}
   \item{Sigma_Ps}{A list containing the \eqn{\Sigma p} values corresponding to the objects in \emph{obj.list}}
-%% ...
+
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Diptavo Dutta
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 }
