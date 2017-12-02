@@ -1,8 +1,8 @@
 ---
 title: "Multi-SKAT"
 author: "Diptavo Dutta"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+#date: "`r Sys.Date()`"
+output: rmarkdown::pdf_document
 
 vignette: >
   %\VignetteIndexEntry{Multi-SKAT}
@@ -12,13 +12,12 @@ vignette: >
 
 ## Multi-SKAT R-package
 
-This package produces kernel Regression based rare-variant association tests for Multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region/gene and computes corresponding pvalues
-efficiently.  
+This package produces kernel regression based rare-variant association tests for multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region/gene and computes corresponding pvalues efficiently accounting for different models of association between the region and the battery of phenotypes.  
 
 ## Overview
 
 In this vignette we display an elementary workflow to obtain the association test results corresponding to different `Multi-SKAT` tests (omnibus and with prespecified kernel)
-----------
+
 
 ## Unrelated individuals
 
@@ -130,8 +129,12 @@ Kinship[1:6,1:6]
 
 V_g
 
+V_e
 
-obj.null = MultiSKAT_NULL_Kins(Phenotypes,Cov,U,D,V_g,V_e)
+eig <- eigen(Kinship)
+U <- eig$vectors; D <- diag(eig$values);
+
+obj.null <- MultiSKAT_NULL_Kins(Phenotypes,Cov,U,D,V_g,V_e)
 
 ### Phenotype-Kernel: PhC; Genotype-Kernel: SKAT
 out1 <- MultiSKAT(obj.null,Genotypes,Sigma_p = cov(Phenotypes),verbose = FALSE)

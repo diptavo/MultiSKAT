@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -12,7 +12,6 @@
 
 <meta name="author" content="Diptavo Dutta" />
 
-<meta name="date" content="2017-10-19" />
 
 <title>Multi-SKAT</title>
 
@@ -20,28 +19,46 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
 
-<link href="data:text/css,body%20%7B%0A%20%20background%2Dcolor%3A%20%23fff%3B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20max%2Dwidth%3A%20700px%3B%0A%20%20overflow%3A%20visible%3B%0A%20%20padding%2Dleft%3A%202em%3B%0A%20%20padding%2Dright%3A%202em%3B%0A%20%20font%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20font%2Dsize%3A%2014px%3B%0A%20%20line%2Dheight%3A%201%2E35%3B%0A%7D%0A%0A%23header%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0A%0A%23TOC%20%7B%0A%20%20clear%3A%20both%3B%0A%20%20margin%3A%200%200%2010px%2010px%3B%0A%20%20padding%3A%204px%3B%0A%20%20width%3A%20400px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20border%2Dradius%3A%205px%3B%0A%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20font%2Dsize%3A%2013px%3B%0A%20%20line%2Dheight%3A%201%2E3%3B%0A%7D%0A%20%20%23TOC%20%2Etoctitle%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20font%2Dsize%3A%2015px%3B%0A%20%20%20%20margin%2Dleft%3A%205px%3B%0A%20%20%7D%0A%0A%20%20%23TOC%20ul%20%7B%0A%20%20%20%20padding%2Dleft%3A%2040px%3B%0A%20%20%20%20margin%2Dleft%3A%20%2D1%2E5em%3B%0A%20%20%20%20margin%2Dtop%3A%205px%3B%0A%20%20%20%20margin%2Dbottom%3A%205px%3B%0A%20%20%7D%0A%20%20%23TOC%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dleft%3A%20%2D2em%3B%0A%20%20%7D%0A%20%20%23TOC%20li%20%7B%0A%20%20%20%20line%2Dheight%3A%2016px%3B%0A%20%20%7D%0A%0Atable%20%7B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dcolor%3A%20%23DDDDDD%3B%0A%20%20border%2Dstyle%3A%20outset%3B%0A%20%20border%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0A%20%20border%2Dwidth%3A%202px%3B%0A%20%20padding%3A%205px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%20%20line%2Dheight%3A%2018px%3B%0A%20%20padding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0A%20%20border%2Dleft%2Dstyle%3A%20none%3B%0A%20%20border%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%200%2E5em%200%3B%0A%7D%0A%0Ablockquote%20%7B%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20padding%3A%200%2E25em%200%2E75em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%3A%20none%3B%0A%20%20border%2Dtop%3A%201px%20solid%20%23777%3B%0A%20%20margin%3A%2028px%200%3B%0A%7D%0A%0Adl%20%7B%0A%20%20margin%2Dleft%3A%200%3B%0A%7D%0A%20%20dl%20dd%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2013px%3B%0A%20%20%20%20margin%2Dleft%3A%2013px%3B%0A%20%20%7D%0A%20%20dl%20dt%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%7D%0A%0Aul%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%20%20ul%20li%20%7B%0A%20%20%20%20list%2Dstyle%3A%20circle%20outside%3B%0A%20%20%7D%0A%20%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dbottom%3A%200%3B%0A%20%20%7D%0A%0Apre%2C%20code%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20color%3A%20%23333%3B%0A%20%20white%2Dspace%3A%20pre%2Dwrap%3B%20%20%20%20%2F%2A%20Wrap%20long%20lines%20%2A%2F%0A%7D%0Apre%20%7B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20margin%3A%205px%200px%2010px%200px%3B%0A%20%20padding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Acode%20%7B%0A%20%20font%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0A%20%20padding%3A%202px%200px%3B%0A%7D%0A%0Adiv%2Efigure%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0A%20%20background%2Dcolor%3A%20%23FFFFFF%3B%0A%20%20padding%3A%202px%3B%0A%20%20border%3A%201px%20solid%20%23DDDDDD%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20margin%3A%200%205px%3B%0A%7D%0A%0Ah1%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%20%20font%2Dsize%3A%2035px%3B%0A%20%20line%2Dheight%3A%2040px%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20border%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20padding%2Dbottom%3A%202px%3B%0A%20%20font%2Dsize%3A%20145%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20border%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20font%2Dsize%3A%20120%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0A%20%20margin%2Dleft%3A%208px%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Ah5%2C%20h6%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23ccc%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Aa%20%7B%0A%20%20color%3A%20%230033dd%3B%0A%20%20text%2Ddecoration%3A%20none%3B%0A%7D%0A%20%20a%3Ahover%20%7B%0A%20%20%20%20color%3A%20%236666ff%3B%20%7D%0A%20%20a%3Avisited%20%7B%0A%20%20%20%20color%3A%20%23800080%3B%20%7D%0A%20%20a%3Avisited%3Ahover%20%7B%0A%20%20%20%20color%3A%20%23BB00BB%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%2F%2A%20Class%20described%20in%20https%3A%2F%2Fbenjeffrey%2Ecom%2Fposts%2Fpandoc%2Dsyntax%2Dhighlighting%2Dcss%0A%20%20%20Colours%20from%20https%3A%2F%2Fgist%2Egithub%2Ecom%2Frobsimmons%2F1172277%20%2A%2F%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Keyword%20%2A%2F%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%2F%2A%20DataType%20%2A%2F%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%2F%2A%20DecVal%20%28decimal%20values%29%20%2A%2F%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20BaseN%20%2A%2F%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Float%20%2A%2F%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Char%20%2A%2F%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20String%20%2A%2F%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%2F%2A%20Comment%20%2A%2F%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%2F%2A%20OtherToken%20%2A%2F%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20AlertToken%20%2A%2F%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Function%20calls%20%2A%2F%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%2F%2A%20ErrorTok%20%2A%2F%0A%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -52,19 +69,16 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <h1 class="title toc-ignore">Multi-SKAT</h1>
 <h4 class="author"><em>Diptavo Dutta</em></h4>
-<h4 class="date"><em>2017-10-19</em></h4>
 
 
 
 <div id="multi-skat-r-package" class="section level2">
 <h2>Multi-SKAT R-package</h2>
-<p>This package produces kernel Regression based rare-variant association tests for Multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region/gene and computes corresponding pvalues efficiently.</p>
+<p>This package produces kernel regression based rare-variant association tests for multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region/gene and computes corresponding pvalues efficiently accounting for different models of association between the region and the battery of phenotypes.</p>
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-</div>
-<div id="in-this-vignette-we-display-an-elementary-workflow-to-obtain-the-association-test-results-corresponding-to-different-multi-skat-tests-omnibus-and-with-prespecified-kernel" class="section level2">
-<h2>In this vignette we display an elementary workflow to obtain the association test results corresponding to different <code>Multi-SKAT</code> tests (omnibus and with prespecified kernel)</h2>
+<p>In this vignette we display an elementary workflow to obtain the association test results corresponding to different <code>Multi-SKAT</code> tests (omnibus and with prespecified kernel)</p>
 </div>
 <div id="unrelated-individuals" class="section level2">
 <h2>Unrelated individuals</h2>
@@ -72,53 +86,53 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h3>Multi-SKAT with pre-specified kernels</h3>
 <p>An example dataset <code>MultiSKAT.example.data</code> has a genotype matrix <code>Genotypes</code> of 5000 individuals and 56 SNPs, a phenotype matrix <code>Phenotypes</code> of 5 continuous phenotypes on those individuals, and a covariates vector <code>Cov</code> denoting intercept.</p>
 <p>The first step is to create a null model using <code>MultiSKAT_NULL</code> function (for unrelated individuals) with the phenotype matrix and covariate matrix. Subsequently, <code>MultiSKAT</code> function is used with appropriate kernel to obtain the association p-value.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MultiSKAT)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MultiSKAT)</code></pre></div>
 <pre><code>## Loading required package: SKAT</code></pre>
 <pre><code>## Loading required package: nlme</code></pre>
 <pre><code>## Loading required package: copula</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(MultiSKAT.example.data)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(MultiSKAT.example.data)
 <span class="kw">attach</span>(MultiSKAT.example.data)
 
 obj.null &lt;-<span class="st"> </span><span class="kw">MultiSKAT_NULL</span>(Phenotypes,Cov)
 
 ### Phenotype-Kernel: PhC; Genotype-Kernel: SKAT
 out1 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">cov</span>(Phenotypes),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-out1$p.value</code></pre>
+out1<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 1.359056e-31</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Het; Genotype-Kernel: SKAT
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Het; Genotype-Kernel: SKAT
 out2 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">diag</span>(<span class="dv">5</span>),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-out2$p.value</code></pre>
+out2<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 6.326384e-25</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Hom; Genotype-Kernel: SKAT
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Hom; Genotype-Kernel: SKAT
 out3 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">matrix</span>(<span class="dv">1</span>,<span class="dt">ncol =</span> <span class="dv">5</span>,<span class="dt">nrow =</span> <span class="dv">5</span>),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-out3$p.value</code></pre>
+out3<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 9.227556e-06</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: PC-Sel; Genotype-Kernel: SKAT
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: PC-Sel; Genotype-Kernel: SKAT
 ### Select top 4 principal components
 
 sel &lt;-<span class="st"> </span><span class="dv">4</span>
-L &lt;-<span class="st"> </span>obj.null$L
+L &lt;-<span class="st"> </span>obj.null<span class="op">$</span>L
 V_y &lt;-<span class="st"> </span><span class="kw">cov</span>(Phenotypes)
-V_p &lt;-<span class="st"> </span><span class="kw">cov</span>(Phenotypes%*%L)
-L_sel &lt;-<span class="st"> </span><span class="kw">cbind</span>(L[,<span class="dv">1</span>:sel],<span class="dv">0</span>)
-pc_sel_kernel &lt;-<span class="st"> </span>V_y%*%L_sel%*%<span class="kw">solve</span>(V_p)%*%<span class="kw">solve</span>(V_p)%*%<span class="kw">t</span>(L_sel)%*%V_y
+V_p &lt;-<span class="st"> </span><span class="kw">cov</span>(Phenotypes<span class="op">%*%</span>L)
+L_sel &lt;-<span class="st"> </span><span class="kw">cbind</span>(L[,<span class="dv">1</span><span class="op">:</span>sel],<span class="dv">0</span>)
+pc_sel_kernel &lt;-<span class="st"> </span>V_y<span class="op">%*%</span>L_sel<span class="op">%*%</span><span class="kw">solve</span>(V_p)<span class="op">%*%</span><span class="kw">solve</span>(V_p)<span class="op">%*%</span><span class="kw">t</span>(L_sel)<span class="op">%*%</span>V_y
 out4 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> pc_sel_kernel,<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-out4$p.value</code></pre>
+out4<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 1.674126e-25</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: PhC; Genotype-Kernel: Burden
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: PhC; Genotype-Kernel: Burden
 out5 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">cov</span>(Phenotypes),<span class="dt">verbose =</span> <span class="ot">FALSE</span>,<span class="dt">r.corr =</span> <span class="dv">1</span>)
-out5$p.value</code></pre>
+out5<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 0.9504494</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Het; Genotype-Kernel: Burden
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Phenotype-Kernel: Het; Genotype-Kernel: Burden
 out6 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">diag</span>(<span class="dv">5</span>),<span class="dt">verbose =</span> <span class="ot">FALSE</span>,<span class="dt">r.corr =</span> <span class="dv">1</span>)
-out6$p.value</code></pre>
+out6<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 0.9039228</code></pre>
 <div id="assign-weights-to-variants" class="section level4">
 <h4>Assign weights to variants</h4>
-<p>It is assumed that rarer variants are more likely to be causal variants with large effect sizes. The default version of <code>MultiSKAT</code> uses <span class="math">\(w_i = Beta(MAF_i,1,25)\)</span> as per Wu et al(2011)(<a href="https://www.ncbi.nlm.nih.gov/pubmed/21737059">via</a>). Other weighting schemes can also be incorporated in the <code>MultiSKAT</code> function through the <code>weights</code> and <code>weights.beta</code> option.</p>
-<pre class="sourceCode r"><code class="sourceCode r">### No weights
+<p>It is assumed that rarer variants are more likely to be causal variants with large effect sizes. The default version of <code>MultiSKAT</code> uses <span class="math inline">\(w_i = Beta(MAF_i,1,25)\)</span> as per Wu et al(2011)(<a href="https://www.ncbi.nlm.nih.gov/pubmed/21737059">via</a>). Other weighting schemes can also be incorporated in the <code>MultiSKAT</code> function through the <code>weights</code> and <code>weights.beta</code> option.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### No weights
 <span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">cov</span>(Phenotypes),
-          <span class="dt">weights.beta =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)$p.value</code></pre>
+          <span class="dt">weights.beta =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 3.361046e-69</code></pre>
 </div>
 </div>
@@ -127,28 +141,28 @@ out6$p.value</code></pre>
 <div id="minp" class="section level4">
 <h4>minP</h4>
 <p>To combine MultiSKAT tests with pre-specified phenotype kernels <code>minP</code> function can be used given the genotype kernels remain the same.</p>
-<pre class="sourceCode r"><code class="sourceCode r">### Combining PhC, Het and Hom with genotype kernel being SKAT
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Combining PhC, Het and Hom with genotype kernel being SKAT
 obj.list =<span class="st"> </span><span class="kw">list</span>(out1,out2,out3)
-obj.minP =<span class="st"> </span><span class="kw">minP</span>(obj.null,obj.list,Genotypes)</code></pre>
+obj.minP =<span class="st"> </span><span class="kw">minP</span>(obj.null,obj.list,Genotypes)</code></pre></div>
 <pre><code>## [1] &quot;The region has 56 variants&quot;
 ## [1] &quot;The region has 46 rare variants&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">obj.minP$p.value</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obj.minP<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 4.077168e-31</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">### Combining PhC and Het with genotype kernel being Burden
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Combining PhC and Het with genotype kernel being Burden
 obj.list =<span class="st"> </span><span class="kw">list</span>(out5,out6)
-obj.minP2 =<span class="st"> </span><span class="kw">minP</span>(obj.null,obj.list,Genotypes,<span class="dt">r.corr =</span> <span class="dv">1</span>)</code></pre>
+obj.minP2 =<span class="st"> </span><span class="kw">minP</span>(obj.null,obj.list,Genotypes,<span class="dt">r.corr =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] &quot;The region has 56 variants&quot;
 ## [1] &quot;The region has 46 rare variants&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">obj.minP2$p.value</code></pre>
-<pre><code>## [1] 0.9429662</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obj.minP2<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 0.9442164</code></pre>
 </div>
 <div id="minpcom" class="section level4">
 <h4>minPcom</h4>
 <p>To combine MultiSKAT tests with pre-specified phenotype kernels with simultaneously varying genotype kernels<code>minPcom</code> function can be used.</p>
-<pre class="sourceCode r"><code class="sourceCode r">### Getting minPcom p-value combining PhC, Het and Hom kernels
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Getting minPcom p-value combining PhC, Het and Hom kernels
 Sigma_Ps =<span class="st"> </span><span class="kw">list</span>(<span class="kw">cov</span>(Phenotypes),<span class="kw">diag</span>(<span class="dv">5</span>),<span class="kw">matrix</span>(<span class="dv">1</span>,<span class="dt">ncol =</span> <span class="dv">5</span>,<span class="dt">nrow =</span> <span class="dv">5</span>))
 obj.com =<span class="st"> </span><span class="kw">minPcom</span>(obj.null,Sigma_Ps,Genotypes,<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-obj.com$p.value</code></pre>
+obj.com<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 8.154335e-31</code></pre>
 <hr />
 </div>
@@ -156,12 +170,12 @@ obj.com$p.value</code></pre>
 </div>
 <div id="related-individuals" class="section level2">
 <h2>Related individuals</h2>
-<p><code>Multi-SKAT</code> functions can analyse related individuals by incorporating kinship correction. An example dataset with related individuals <code>MultiSKAT.Kinship.example.data</code> includes a kinship matrix <code>Kinship</code> of 500 individuals and 20 SNPs, a co-heritability matrix <code>V_g</code>, residual covariance matrix <code>V_e</code> in addition to 5 phenotypes, genotype matrix and covariates. Additionally, if the kinship matrix can be written as <span class="math">\[Kinship = UDU^T\]</span>, with <span class="math">\(D\)</span> being a diagonal matrix of eigen values, the dataset contains <code>U</code> and <code>D</code>. The workflow for the related individuals remains the same. First the construction of the null model through <code>MultiSKAT_NULL_Kins</code> followed by obtaining the p-value through <code>MultiSKAT</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">detach</span>(MultiSKAT.example.data)
+<p><code>Multi-SKAT</code> functions can analyse related individuals by incorporating kinship correction. An example dataset with related individuals <code>MultiSKAT.Kinship.example.data</code> includes a kinship matrix <code>Kinship</code> of 500 individuals and 20 SNPs, a co-heritability matrix <code>V_g</code>, residual covariance matrix <code>V_e</code> in addition to 5 phenotypes, genotype matrix and covariates. Additionally, if the kinship matrix can be written as <span class="math display">\[Kinship = UDU^T\]</span>, with <span class="math inline">\(D\)</span> being a diagonal matrix of eigen values, the dataset contains <code>U</code> and <code>D</code>. The workflow for the related individuals remains the same. First the construction of the null model through <code>MultiSKAT_NULL_Kins</code> followed by obtaining the p-value through <code>MultiSKAT</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">detach</span>(MultiSKAT.example.data)
 <span class="kw">data</span>(MultiSKAT.Kinship.example.data)
 <span class="kw">attach</span>(MultiSKAT.Kinship.example.data)
 
-Kinship[<span class="dv">1</span>:<span class="dv">6</span>,<span class="dv">1</span>:<span class="dv">6</span>]</code></pre>
+Kinship[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]  1.0  0.5  0.0  0.0  0.0  0.0
 ## [2,]  0.5  1.0  0.0  0.0  0.0  0.0
@@ -169,18 +183,28 @@ Kinship[<span class="dv">1</span>:<span class="dv">6</span>,<span class="dv">1</
 ## [4,]  0.0  0.0  0.5  1.0  0.0  0.0
 ## [5,]  0.0  0.0  0.0  0.0  1.0  0.5
 ## [6,]  0.0  0.0  0.0  0.0  0.5  1.0</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">V_g</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">V_g</code></pre></div>
 <pre><code>##            [,1]       [,2]      [,3]      [,4]      [,5]
 ## [1,] 0.14010271 0.01793845 0.1424442 0.1720590 0.2137881
 ## [2,] 0.01793845 0.33529520 0.1160337 0.2552043 0.1140791
 ## [3,] 0.14244417 0.11603368 0.2794992 0.3066876 0.1807799
 ## [4,] 0.17205899 0.25520432 0.3066876 0.4844014 0.2450426
 ## [5,] 0.21378813 0.11407914 0.1807799 0.2450426 0.4240207</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">obj.null =<span class="st"> </span><span class="kw">MultiSKAT_NULL_Kins</span>(Phenotypes,Cov,U,D,V_g,V_e)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">V_e</code></pre></div>
+<pre><code>##           [,1]      [,2]       [,3]       [,4]      [,5]
+## [1,] 0.8580322 0.3504979 0.30109816 0.19109055 0.1422359
+## [2,] 0.3504979 0.6627300 0.29984708 0.17956632 0.3050065
+## [3,] 0.3010982 0.2998471 0.71851052 0.09732203 0.1880925
+## [4,] 0.1910906 0.1795663 0.09732203 0.51359888 0.1675392
+## [5,] 0.1422359 0.3050065 0.18809247 0.16753917 0.5739799</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(Kinship)
+U &lt;-<span class="st"> </span>eig<span class="op">$</span>vectors; D &lt;-<span class="st"> </span><span class="kw">diag</span>(eig<span class="op">$</span>values);
+
+obj.null &lt;-<span class="st"> </span><span class="kw">MultiSKAT_NULL_Kins</span>(Phenotypes,Cov,U,D,V_g,V_e)
 
 ### Phenotype-Kernel: PhC; Genotype-Kernel: SKAT
 out1 &lt;-<span class="st"> </span><span class="kw">MultiSKAT</span>(obj.null,Genotypes,<span class="dt">Sigma_p =</span> <span class="kw">cov</span>(Phenotypes),<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
-out1$p.value</code></pre>
+out1<span class="op">$</span>p.value</code></pre></div>
 <pre><code>## [1] 8.280796e-14</code></pre>
 </div>
 
@@ -191,7 +215,7 @@ out1$p.value</code></pre>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
