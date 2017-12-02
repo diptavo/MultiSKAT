@@ -20,3 +20,5 @@ minP: Performs the minP omnibus test for a given genotype kernel (SKAT or Burden
 minPcom: Performs the minPcom omnibus test with the genotype kernels being SKAT and Burden and a given list of phenotype kernels. It is not
          advisable to use more than 5 phenotype kernels since the tail approximation can be unstable for copula-based methods.
           
+
+MultiSKAT provides a generalized framework for performing rare-variant based tests of associations. Many published methods (e.g. GAMuT, MSKAT, MAAUSS, MK-FM) can be viewed as a special case of MultiSKAT with certain specific choice of kernels. In addition, MultiSKAT includes a set of omnibus tests that can aggregate results over a multiplicity of kernels, producing robust results.
