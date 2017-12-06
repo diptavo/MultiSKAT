@@ -13,7 +13,7 @@ If you use MultiSKAT R package for data analysis, please consider citing our man
 
 MultiSKAT R-package can be installed from the downloaded gzipped tarball as
 ```R CMD INSTALL MultiSKAT_1.0.tar.gz ```
-with the following packages pre-installed: SKAT, copula, nlme
+with the following packages pre-installed: *SKAT*, *copula*, *nlme*
 
 # Main functions:
 
@@ -32,6 +32,8 @@ with the following packages pre-installed: SKAT, copula, nlme
 **minPcom**: Performs the minPcom omnibus test with the genotype kernels being SKAT and Burden and a given list of phenotype kernels. It is not
          advisable to use more than 5 phenotype kernels since the tail approximation can be unstable for copula-based methods.
           
-**WSS**: Performs a weighted sum of squares omnibus test by by adding up the test statistic from different MultiSKAT tests, assigning them different weights. This approach was previously used in [Ionita-Laza I. et al] (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3675243/) 
+**WSS**: Performs a weighted sum of squares omnibus test by by adding up the test statistic from different MultiSKAT tests, assigning them different weights. This approach was previously used in [Ionita-Laza I. et al]( https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3675243/) 
+(Please note that this approach was not included in the Multi-SKAT manuscript.)
+
 
 MultiSKAT provides a generalized framework for performing rare-variant based tests of associations. Many published methods (e.g. GAMuT, MSKAT, MAAUSS, MK-FM) can be viewed as a special case of MultiSKAT with certain specific choice of kernels. In addition, MultiSKAT includes a set of omnibus tests that can aggregate results over a multiplicity of kernels, producing robust results.
