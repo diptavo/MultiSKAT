@@ -1,8 +1,22 @@
-# MultiSKAT
+# MultiSKAT `v(1.0)`
 MultiSKAT is an R-package focused at rare-variant analysis of continuous multiple phenotype data. 
-This project contains the R-codes/functions (including an example dataset) to carry out the MultiSKAT tests.
+This project contains the R-codes/functions (including an example dataset) to carry out the MultiSKAT tests. Please note that this package is still under some developement. Any questions or bug-reports should be mailed to **diptavo@umich.edu**
 
-Main functions:
+# Citation
+
+If you use MultiSKAT R package for data analysis, please consider citing our manuscript on biorXiv.
+ https://t.co/pxA9W8CZ0S
+ 
+[Diptavo Dutta, Laura Scott, Michael Boehnke, Seunggeun Lee. *Multi-SKAT: General framework to test multiple phenotype associations of rare variants*]( https://t.co/pxA9W8CZ0S)
+
+
+# Installation
+
+MultiSKAT R-package can be installed from the downloaded gzipped tarball as
+```R CMD INSTALL MultiSKAT_1.0.tar.gz ```
+with the following packages pre-installed: SKAT, copula, nlme
+
+# Main functions:
 
 MultiSKAT_NULL: Builds a MultiSKAT null model extracting the sufficient statistics from the phenotype and the covariate data under the 
                 assumption of no association for independent samples. Options are available (is.fast) for a faster approximation to the null model and is set to 
