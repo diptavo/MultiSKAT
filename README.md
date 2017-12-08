@@ -1,3 +1,8 @@
+# About
+
+MultiSKAT provides a generalized framework for performing rare-variant based tests of associations with multiple phenotypes, correcting for any relatedness among  individuals. Many published methods (e.g. GAMuT, MSKAT, MAAUSS, MK-FM) can be viewed as a special case of MultiSKAT with certain specific choice of kernels. In addition, MultiSKAT includes a set of omnibus tests that can aggregate results over a multiplicity of kernels, producing robust results.
+
+
 # MultiSKAT `v(1.0)`
 MultiSKAT is an R-package focused at rare-variant analysis of continuous multiple phenotype data. 
 This project contains the R-codes/functions (including an example dataset) to carry out the MultiSKAT tests. Please note that this package is still under some developement. Any questions or bug-reports should be mailed to **diptavo@umich.edu**
@@ -35,5 +40,3 @@ with the following packages pre-installed: *SKAT*, *copula*, *nlme*
 **WSS**: Performs a weighted sum of squares omnibus test by by adding up the test statistic from different MultiSKAT tests, assigning them different weights. This approach was previously used in [Ionita-Laza I. et al]( https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3675243/) 
 (Please note that this approach was not included in the Multi-SKAT manuscript.)
 
-
-MultiSKAT provides a generalized framework for performing rare-variant based tests of associations. Many published methods (e.g. GAMuT, MSKAT, MAAUSS, MK-FM) can be viewed as a special case of MultiSKAT with certain specific choice of kernels. In addition, MultiSKAT includes a set of omnibus tests that can aggregate results over a multiplicity of kernels, producing robust results.
