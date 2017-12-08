@@ -13,12 +13,15 @@ If you use MultiSKAT R package for data analysis, please consider citing our man
  
 [Diptavo Dutta, Laura Scott, Michael Boehnke, Seunggeun Lee. *Multi-SKAT: General framework to test multiple phenotype associations of rare variants*]( https://t.co/pxA9W8CZ0S)
 
-
 # Installation
 
 MultiSKAT R-package can be installed from the downloaded gzipped tarball as
 ```R CMD INSTALL MultiSKAT_1.0.tar.gz ```
 with the following packages pre-installed: *SKAT*, *copula*, *nlme*
+
+# Manual
+
+A detailed workflow of MultiSKAT methods including omnibus tests and kinship correction are provided in the [Wiki](https://github.com/diptavo/MultiSKAT/wiki). 
 
 # Main functions:
 
