@@ -9,7 +9,7 @@ This project contains the R-codes/functions (including an example dataset) to ca
 
 # Citation
 
-If you use MultiSKAT R package for data analysis, please consider citing our manuscript on [Genetic Epidemiology] (https://onlinelibrary.wiley.com/journal/10982272).
+If you use MultiSKAT R package for data analysis, please consider citing our manuscript on [Genetic Epidemiology]( https://onlinelibrary.wiley.com/journal/10982272) .
  
 [Diptavo Dutta, Laura Scott, Michael Boehnke, Seunggeun Lee. *Multi-SKAT: General framework to test multiple phenotype associations of rare variants*]( https://onlinelibrary.wiley.com/doi/full/10.1002/gepi.22156)
 
