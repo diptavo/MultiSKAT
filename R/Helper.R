@@ -11,7 +11,7 @@ mat.sqrt <- function(A)
 MAF <- function(G){
   mf <- array()
   for(i in 1:ncol(G)){
-    mf[i] <- sqrt(sum(G[,i] == 0)/nrow(G));
+    mf[i] <- sqrt(sum(G[,i] == 0, na.rm = TRUE)/nrow(G));
     if(mf[i] > 0.5) 
       mf[i] = 1- mf[i];
   }
