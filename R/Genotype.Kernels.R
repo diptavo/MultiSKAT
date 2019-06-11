@@ -11,9 +11,9 @@ function(Z,obj.res, kernel = "linear.weighted", Is.Common=FALSE, weights.beta=c(
   if(m < 3 & verbose){
 	msg <-sprintf("Rare variant test with < 3 variants is not advisable")
 	warning(msg,call. = FALSE)}
-  n.rare <- sum(MAF(Z) < 0.01)
+  n.rare <- sum(MAF(Z) < 0.01, na.rm = TRUE)
     if(verbose){print(paste("The region has ",n.rare," rare variants",sep = ""))}
-  mc <- sum(MAC(Z))
+  mc <- sum(MAC(Z), na.rm = TRUE)
   if(mc < 5 & verbose){
 	msg <-sprintf("Rare variant test with total MAC < 5 is not advisable")
 	warning(msg,call. = FALSE)}

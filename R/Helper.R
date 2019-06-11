@@ -21,7 +21,7 @@ MAF <- function(G){
 MAC <- function(G){
   mc <- array()
   for(i in 1:ncol(G)){
-    mc[i] <- sum(G[,i] == 1) + 2*min(sum(G[,i] == 2),sum(G[,i] == 0));
+    mc[i] <- sum(G[,i] == 1, na.rm = TRUE) + 2*min(sum(G[,i] == 2, na.rm = TRUE), sum(G[,i] == 0, na.rm = TRUE), na.rm = TRUE);
   }
   return(mc);
 }
