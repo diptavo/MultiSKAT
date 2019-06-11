@@ -8,5 +8,9 @@ Maintainer: Diptavo Dutta <diptavo@umich.edu>
 Description: Kernel Regression based association tests for Multiple phenotypes. The functions aggregate variant-phenotype score statistic in a particular region and computes corresponding p-values efficiently.
 Depends: SKAT, nlme, copula
 License: GPL (>=2)
-Suggests: knitr,rmarkdown,R.rsp
+Suggests: 
+    knitr,
+    rmarkdown,
+    R.rsp,
+    testthat
 VignetteBuilder: knitr
